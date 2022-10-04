@@ -49,13 +49,16 @@
                     <li><a href="/">Homepage</a></li>
                    
             
-                    <% if (user) { %>
+                    <!-- <% if (user) { %>
                         <li><a href="/profile">Dashboard</a></li>
-                      <% } %>
+                      <% } %> -->
             </ul>
         </nav>
         <header>
-            <h1>Oauth Login</h1>
+            <h1>Welcome to your Dashboard <%= user.username %></h1>
+            <!-- <% if (user) { %>
+                <h2><%= user.name %></h2>
+              <% } %> -->
             <h2>Homepage</h2>
         </header>
         <main>

@@ -1,20 +1,36 @@
 const res = require('express/lib/response');
 
 const router = require('express').Router();
+const passport = require('passport');
+
 
 // auth login
-
 router.get('/login', (req, res) => {
-    res.render("login");
+    res.render("login", {user: req.user});
 })
 
+// auth logout
 router.get('/logout', (req, res) => {
-    res.send('login out');
+    // res.send('login out');
+    req.logout();
+    res.redirect('/');
+
 })
 
-router.get('/google', (req, res) => {
-    res.send('logging in');
-})
+// auth with google
+router.get('/google', passport.authenticate('google', {
+     scope: ['profile'] 
+}));
+
+router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
+    // Successful authentication, redirect home.
+    // res.redirect('/');
+    // res.send('You reach callback URL');
+    // res.send(req.user);
+    res.redirect('/profile');
+});
+
+
 
 
 module.exports = router;
